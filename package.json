@@ -11,9 +11,9 @@
     "url": "git+https://github.com/Wissididom/honeypot-bot.git"
   },
   "type": "module",
-  "main": "index.js",
+  "main": "main.ts",
   "scripts": {
-    "start": "node main.js"
+    "start": "node main.ts"
   },
   "dependencies": {
     "discord.js": "^14.27.0",
