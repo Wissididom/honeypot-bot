@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import {
   ActivityType,
   Client,
@@ -22,24 +23,7 @@ const bot = new Client({
     Partials.Reaction,
   ],
 });
-const token = Deno.env.get("TOKEN");
-
-const exitHandler = (signal: Deno.Signal) => {
-  console.log(`Received ${signal}`);
-  Deno.exit(0);
-};
-
-Deno.addSignalListener("SIGINT", () => exitHandler("SIGINT"));
-Deno.addSignalListener("SIGTERM", () => exitHandler("SIGTERM"));
-
-self.addEventListener("error", (event) => {
-  console.error("Uncaught Exception:", event.error);
-  Deno.exit(1);
-});
-self.addEventListener("unhandledrejection", (event) => {
-  console.log(`Unhandled Rejection:`, event.reason);
-  Deno.exit(1);
-});
+const token = process.env.TOKEN;
 
 bot.on(Events.ClientReady, () => {
   console.log(`Logged in as ${bot.user?.tag}!`);
@@ -51,11 +35,11 @@ bot.on(Events.ClientReady, () => {
 
 bot.on(Events.MessageCreate, async (message) => {
   if (message.author.system || message.author.bot || message.webhookId) return;
-  if (Deno.env.has("HONEYPOT_CHANNEL")) {
+  if (process.env.HONEYPOT_CHANNEL) {
     await handleHoneypot(
       message,
-      Deno.env.get("HONEYPOT_CHANNEL")!,
-      Deno.env.get("HONEYPOT_LOG_CHANNEL") ?? null,
+      process.env.HONEYPOT_CHANNEL,
+      process.env.HONEYPOT_LOG_CHANNEL ?? null,
     );
   }
 });
