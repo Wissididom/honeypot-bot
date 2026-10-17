@@ -1,0 +1,22 @@
+{
+  "name": "honeypot-bot",
+  "version": "1.0.0",
+  "description": "Archived, please use other bots like https://www.honeypotbot.com/ or https://honeypot.riskymh.dev/ instead.",
+  "homepage": "https://github.com/Wissididom/honeypot-bot#readme",
+  "bugs": {
+    "url": "https://github.com/Wissididom/honeypot-bot/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wissididom/honeypot-bot.git"
+  },
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.27.0",
+    "dotenv": "^18.0.8"
+  }
+}
